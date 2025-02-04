@@ -114,3 +114,19 @@ app.post("/toss", async (req: Request, res: Response) => {
     console.error(error);
   }
 });
+
+app.get("/test", async (req: Request, res: Response) => {
+  console.log("get요청");
+  const data = {
+    userName: "asd",
+    message: "asd",
+    userId: "asd",
+    roomId: "asd",
+  };
+  try {
+    const [rows] = await promisePool.query("INSERT INTO chats SET ?", data);
+    console.log(rows);
+  } catch (error) {
+    console.log("에러:" + error);
+  }
+});
