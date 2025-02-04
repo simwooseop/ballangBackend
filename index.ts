@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(cors());
 
 const server = http.createServer(app);
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 3001;
 const host = "0.0.0.0";
 
 const pool = mysql.createPool({
@@ -112,21 +112,5 @@ app.post("/toss", async (req: Request, res: Response) => {
     res.status(response.status).json(result);
   } catch (error) {
     console.error(error);
-  }
-});
-
-app.get("/test", async (req: Request, res: Response) => {
-  console.log("get요청");
-  const data = {
-    userName: "asd",
-    message: "asd",
-    userId: "asd",
-    roomId: "asd",
-  };
-  try {
-    const [rows] = await promisePool.query("INSERT INTO chats SET ?", data);
-    console.log(rows);
-  } catch (error) {
-    console.log("에러:" + error);
   }
 });
